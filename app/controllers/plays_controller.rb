@@ -7,11 +7,11 @@ class PlaysController < ApplicationController
   end
 
   def new
-    @play = Play.new
+    @play = current_user.plays.build
   end
 
   def create
-    @play = Play.create(play_params)
+    @play = current_user.plays.build(play_params)
     if @play.save
       redirect_to @play
     else
@@ -44,7 +44,7 @@ class PlaysController < ApplicationController
   private
 
   def play_params
-    params.require(:play).permit(:title, :description, :director)
+    params.require(:play).permit(:title, :description, :director, :user_id)
   end
 
   def find_play
