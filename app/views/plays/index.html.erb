@@ -1,1 +1,11 @@
-<h1>It's up and Runnig!</h1>
+<div class="container">
+  <h1>It's up and Runnig!</h1>
+
+  <% @play.each do |play| %>
+    <h3><%= play.title %></h3>
+    <p><%= play.description %></p>
+    <p><%= play.director %></p>
+
+  <% end %>
+  <%= link_to "New Play", new_play_path %>
+</div>
