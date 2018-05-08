@@ -2,10 +2,8 @@
   <h1>It's up and Runnig!</h1>
 
   <% @play.each do |play| %>
-    <h3><%= play.title %></h3>
-    <p><%= play.description %></p>
-    <p><%= play.director %></p>
-
+    <h2><%= link_to play.title, play_path(play) %></h2>
+    <hr>
   <% end %>
   <%= link_to "New Play", new_play_path %>
 </div>
