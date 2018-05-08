@@ -1,6 +1,6 @@
 class PlaysController < ApplicationController
-  
-  before_action :find_play, only: [ :show ]
+
+  before_action :find_play, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @play = Play.order(created_at: :desc)
@@ -13,7 +13,7 @@ class PlaysController < ApplicationController
   def create
     @play = Play.create(play_params)
     if @play.save
-      redirect_to plays_path
+      redirect_to @play
     else
       render :new
     end
@@ -21,6 +21,23 @@ class PlaysController < ApplicationController
 
   def show
     
+  end
+
+  def edit
+    
+  end
+
+  def update
+    if @play.update(play_params)
+      redirect_to @play
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @play.destroy
+    redirect_to root_path
   end
 
 
