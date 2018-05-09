@@ -4,9 +4,14 @@
   <% if @play.count == 0 %>
     <h3>There are no plays in this category</h3>
   <% else %>
-    <% @play.each do |play| %>
-      <h2><%= link_to play.title, play_path(play) %></h2>
-      <hr>
-    <% end %>
+    <div class="row">
+      <% @play.each do |play| %>
+        <div class="col-md-3">
+          <a href="/plays/ <%= play.id %>">
+            <%=image_tag play.play_img.url(:medium), class: 'play' %>
+          </a>
+        </div>
+      <% end %>
+    </div>
   <% end %>
 </div>

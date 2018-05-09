@@ -1,17 +1,22 @@
-<div class="container">
-  <h2><%= @play.title %></h2>
-  [ <%= @play.category.name %> ]
-  <h3><%= @play.director %></h3>
-  <p><%= @play.description %></p>
+<div class="row">
+  <div class="col-md-4">
+    <%= image_tag @play.play_img.url(:medium) %>
+  </div>
+  <div class="col-md-8">
+    <div class="play-info">
+      <h2><%= @play.title %></h2>
+      <h3> Form <%= @play.director %></h3>
+      <h5>[ <%= @play.category.name %> ]</h5>
+      <p><%= @play.description %></p>
+    </div>
+  </div>    
 </div>
 
 <div class="button-group">
   <% if user_signed_in? %>
     <% if @play.user_id == current_user.id %>
-
-      <%= link_to 'Back', plays_path %> |
-      <%= link_to 'Edit', edit_play_path(@play) %> |
-      <%= link_to 'Delete', play_path(@play), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Edit', edit_play_path(@play), class: 'btn btn-dark' %>
+      <%= link_to 'Delete', play_path(@play), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-dark' %>
     <% end %>
   <% end %>    
 </div>
