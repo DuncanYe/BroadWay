@@ -12,9 +12,11 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
+
         <div class="navbar-header">
           <%= link_to 'Broadway', root_path, class:'navbar-brand' %>
         </div>
+
         <form class="form-inline my-2 my-lg-0">
           <% if user_signed_in? %>
             <%= link_to "Add Play", new_play_path %> ||
@@ -24,16 +26,20 @@
             <%= link_to 'Sign In', new_user_session_path %>  
           <% end %>
         </form>
+
         <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
-</div>
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Sort
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% Category.all.each do |category| %>
+              <li class="active" if params[:category] == category.name >
+                <%= link_to category.name, plays_path(category: category.name)%>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+
       </div>
     </nav> 
 
