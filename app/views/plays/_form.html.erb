@@ -1,6 +1,11 @@
 <%= form_for play do |f| %>
 
   <div class="form-group">
+    <%= f.label :play_img, "Image" %>
+    <%= f.file_field :play_img, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :category_id, "Select Category" %>
     <%= f.collection_select :category_id, Category.all, :id, :name, { promap: :true }, { class: 'form-control'} %>
   </div>
