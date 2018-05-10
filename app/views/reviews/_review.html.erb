@@ -1,8 +1,12 @@
 <% play.reviews.each do |review| %>
   <p><%= review.rating %></p>
   <p><%= review.comment %></p>
-  <%= link_to 'Edit', edit_play_review_path(play, review) %>
+  <% if user_signed_in? %>
+    <% if review.user_id == current_user.id %>
+      <%= link_to 'Edit', edit_play_review_path(play.reviews, review), class: 'btn btn-dark' %>
                                      <!-- (paly, review) play 從哪來的？  -->
-  <%= link_to 'Trash It', play_review_path(play, review), method: :delete, data: { confirm: '確定刪除評論嗎，如果確定請按，確認' } %>
+      <%= link_to 'Trash It', play_review_path(play, review), method: :delete, data: { confirm: '確定刪除評論嗎，如果確定請按，確認' }, class: 'btn btn-danger' %>
+    <% end %>
+  <% end %>    
   <hr>
 <% end %>
