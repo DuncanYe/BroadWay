@@ -22,12 +22,12 @@
   <br>
   <br>
   <div class="col-md-12">
-    <h1>Reviews</h1>
-    <%= render partial: 'reviews/review', locals: { play: @play } %>
     <div>
       <%= link_to 'Commnet it', new_play_review_path(@play, @review) %>
                                   <!-- 這裡需要傳@review嗎 -->
     </div>
+    <h1>Reviews</h1>
+    <%= render partial: 'reviews/review', locals: { play: @play } %>
   </div>
 
 
