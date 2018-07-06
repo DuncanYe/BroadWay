@@ -6,5 +6,7 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
+  resources :users, only: [:index, :show, :edit, :update]
+
   root "plays#index"
 end
