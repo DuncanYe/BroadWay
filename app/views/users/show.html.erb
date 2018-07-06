@@ -4,7 +4,7 @@
       user.avatar
       <h3>This is <%= @user.name %> Page</h3>
       user.intro <br>
-      edit.profile
+      <%= link_to'Edit Profile', edit_user_path(current_user) %>
     </div>
     <div class="col md-12">
       <br>
