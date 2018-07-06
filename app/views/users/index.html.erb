@@ -1,14 +1,14 @@
 <div class="container">
+  <h1 class="text-center">所有使用者</h1>
+  <hr>
   <div class="row">
-    <h1>所有使用者</h1>
-    <div class="col-md-12">
+    <% @users.each do |user| %>
       <div class="col-md-4">
-        <% @users.each do |user| %>
-          <h4><%= user.name %></h4>
+        <h4><%= link_to user.name, user_path(user) %></h4>
+        <%= link_to user_path(user) do %>
           <%= image_tag user.avatar_url ,width: "200px" %>
         <% end %>
       </div>
-    </div>
-    
+    <% end %>
   </div>
 </div>

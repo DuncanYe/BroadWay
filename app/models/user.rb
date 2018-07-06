@@ -6,6 +6,10 @@ class User < ApplicationRecord
   validates :name, :intro, presence: true
   mount_uploader :avatar, AvatarUploader
 
-   has_many :plays
-   has_many :reviews
+   has_many :plays, dependent: :destroy
+   has_many :reviews, dependent: :destroy
+
+   def admin?
+     self.role = "admin"
+   end
 end
