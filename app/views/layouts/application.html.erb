@@ -18,28 +18,30 @@
         </div>
 
         <form class="form-inline my-2 my-lg-0">
-          <% if user_signed_in? %>
-            <%= link_to "Add Play", new_play_path %> ||
-            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-          <% else %>
-            <%= link_to 'Sign Up', new_user_registration_path %> ||
-            <%= link_to 'Sign In', new_user_session_path %>  
-          <% end %>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Sort
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <% Category.all.each do |category| %>
+                <li class="active" if params[:category] == category.name >
+                  <%= link_to category.name, plays_path(category: category.name)%>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </form>
 
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Sort
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <% Category.all.each do |category| %>
-              <li class="active" if params[:category] == category.name >
-                <%= link_to category.name, plays_path(category: category.name)%>
-              </li>
-            <% end %>
-          </ul>
+        <div>
+          <% if user_signed_in? %>
+            <%= link_to 'All users', users_path %> |
+            <%= link_to '我', user_path(current_user) if user_signed_in? %> |
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+          <% else %>
+            <%= link_to 'Sign Up', new_user_registration_path %> |
+            <%= link_to 'Sign In', new_user_session_path %>  
+          <% end %>
         </div>
-        <%= link_to 'Profile', user_path(current_user) if user_signed_in? %>
 
       </div>
     </nav> 

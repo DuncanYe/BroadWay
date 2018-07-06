@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
-  before_action :find_user
+  before_action :find_user, except: [:index]
+
+  def index
+    @users = User.order("created_at desc")
+  end
+
   def show
     @user_play = @user.plays
   end
